@@ -40,7 +40,7 @@ async function getIcons() {
   return Promise.all(
     files.map(async (file) => ({
       svg: await fs.readFile(`./build/icons/${file}`, 'utf8'),
-      componentName: `${camelcase(file.replace(/\.svg$/, '').replace(/\d+/, (number) => `${converter.toWords(number)}_`), {
+      componentName: `${camelcase(file.replace(/\.svg$/, '').replace(/^\d+/g, (number) => `${converter.toWords(number)}_`), {
         pascalCase: true,
       })}Icon`,
     }))
