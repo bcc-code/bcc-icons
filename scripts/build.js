@@ -7,6 +7,7 @@ const fs = require('fs').promises
 const camelcase = require('camelcase')
 const { compile: compileVue } = require('@vue/compiler-dom')
 const { dirname } = require('path')
+const converter = require('number-to-words')
 
 let transform = {
   vue: (svg, componentName, format) => {
@@ -39,7 +40,7 @@ async function getIcons() {
   return Promise.all(
     files.map(async (file) => ({
       svg: await fs.readFile(`./build/icons/${file}`, 'utf8'),
-      componentName: `${camelcase(file.replace(/\.svg$/, ''), {
+      componentName: `${camelcase(file.replace(/\.svg$/, '').replace(/\d+/, (number) => `${converter.toWords(number)}_`), {
         pascalCase: true,
       })}Icon`,
     }))
