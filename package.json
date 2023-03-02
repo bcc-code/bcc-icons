@@ -6,12 +6,12 @@
     "files": [
         "dist"
     ],
-    "main": "./dist/esm/index.js",
-    "module": "./dist/index.js",
+    "main": "./dist/index.js",
+    "module": "./dist/esm/index.js",
     "types": "dist/index.d.ts",
     "exports": {
-        "import": "./dist/index.js",
-        "require": "./dist/esm/index.js"
+        "import": "./dist/esm/index.js",
+        "require": "./dist/index.js"
     },
     "scripts": {
         "build": "node ./scripts/build.js",
