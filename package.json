@@ -1,0 +1,28 @@
+{
+    "name": "@bcc-code/icons",
+    "repository": "https://github.com/bcc-code/bcc-icons.git",
+    "version": "0.0.0",
+    "license": "Apache-2.0",
+    "files": [
+        "dist"
+    ],
+    "main": "./dist/esm/index.js",
+    "module": "./dist/index.js",
+    "types": "dist/index.d.ts",
+    "exports": {
+        "import": "./dist/index.js",
+        "require": "./dist/esm/index.js"
+    },
+    "scripts": {
+        "build": "node ./scripts/build.js",
+        "build-icons": "svgo -f ./node_modules/@material-design-icons/svg/outlined -o ./build/icons --pretty --indent=2"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.12.10",
+        "@material-design-icons/svg": "^0.14.3",
+        "@svgr/core": "^5.5.0",
+        "@vue/compiler-dom": "^3.0.5",
+        "camelcase": "^6.0.0",
+        "svgo": "^2.8.0"
+    }
+}
