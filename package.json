@@ -4,18 +4,11 @@
     "version": "0.0.0",
     "license": "Apache-2.0",
     "files": [
-        "dist"
+        "icons"
     ],
-    "main": "./dist/index.js",
-    "module": "./dist/esm/index.js",
-    "types": "dist/index.d.ts",
-    "exports": {
-        "import": "./dist/esm/index.js",
-        "require": "./dist/index.js"
-    },
     "scripts": {
         "build": "npm run build-icons && node ./scripts/build.js",
-        "build-icons": "svgo -f ./src/outlined -o ./build/icons --pretty --indent=2"
+        "build-icons": "svgo -f ./src/outlined -o ./icons --pretty --indent=2"
     },
     "devDependencies": {
         "@babel/core": "^7.12.10",

@@ -6,7 +6,7 @@ Icons used in the BCC design system, adapted from Material Symbols.
 The basis of this package are the [outlined SVG icons](https://github.com/marella/material-design-icons/tree/main/svg/outlined) from [Material Symbols](https://fonts.google.com/icons?icon.style=Outlined). Some icons might be redesigned by the design team and replace the default icons.
 
 ## Usage
-Every icon is compiled as a Vue component, which can be used like this:
+The `@bcc-code/icons` package contains raw SVG icons. Use the `@bcc-code/icons-vue` package to get every icon as a Vue component, which can be used like this:
 
 ```js
 import { SearchIcon } from "@bcc-code/icons";

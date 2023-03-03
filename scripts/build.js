@@ -36,10 +36,10 @@ let transform = {
 }
 
 async function getIcons() {
-  let files = await fs.readdir(`./build/icons`)
+  let files = await fs.readdir(`./icons`)
   return Promise.all(
     files.map(async (file) => ({
-      svg: await fs.readFile(`./build/icons/${file}`, 'utf8'),
+      svg: await fs.readFile(`./icons/${file}`, 'utf8'),
       componentName: `${camelcase(file.replace(/\.svg$/, '').replace(/^\d+/g, (number) => `${converter.toWords(number)}_`), {
         pascalCase: true,
       })}Icon`,
@@ -65,7 +65,7 @@ async function ensureWrite(file, text) {
 }
 
 async function buildIcons(format) {
-  let outDir = `./dist`
+  let outDir = `./vue/dist`
   if (format === 'esm') {
     outDir += '/esm'
   }
