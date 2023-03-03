@@ -14,16 +14,14 @@
         "require": "./dist/index.js"
     },
     "scripts": {
-        "build": "node ./scripts/build.js",
-        "build-icons": "svgo -f ./node_modules/@material-design-icons/svg/outlined -o ./build/icons --pretty --indent=2"
+        "build": "npm run build-icons && node ./scripts/build.js",
+        "build-icons": "svgo -f ./src/outlined -o ./build/icons --pretty --indent=2"
     },
     "devDependencies": {
         "@babel/core": "^7.12.10",
-        "@material-design-icons/svg": "^0.14.3",
-        "@svgr/core": "^5.5.0",
         "@vue/compiler-dom": "^3.0.5",
         "camelcase": "^6.0.0",
-        "number-to-words": "^1.2.4",
+        "number-to-words": "1.2.4",
         "svgo": "^2.8.0"
     }
 }
