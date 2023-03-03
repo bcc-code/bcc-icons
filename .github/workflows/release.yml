@@ -1,8 +1,11 @@
-name: Release Dev Version
+name: Release
 
 on:
-  push:
-    branches: [main]
+  release:
+    types: [published]
+
+permissions:
+  contents: read
 
 env:
   CI: true
@@ -12,15 +15,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version-file: .node-version
           registry-url: 'https://registry.npmjs.org'
-
+  
       - name: Use cached node_modules
         id: cache
         uses: actions/cache@v3
@@ -34,25 +36,12 @@ jobs:
         if: steps.cache.outputs.cache-hit != 'true'
         run: npm ci
 
-      - name: Build
-        run: npm run build
-
-      - name: Resolve version
-        id: vars
-        run: echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
-
-      - name: 'Version `@bcc-code/icons` based on commit: 0.0.0-dev.${{ env.sha_short }}'
-        run: npm version 0.0.0-dev.${{ env.sha_short }} --force --no-git-tag-version
-      
-      - name: 'Version `@bcc-code/icons-vue` based on commit: 0.0.0-dev.${{ env.sha_short }}'
-        run: npm version 0.0.0-dev.${{ env.sha_short }} --force --no-git-tag-version --prefix vue
-
       - name: Publish `@bcc-code/icons`
-        run: npm publish --tag dev
+        run: npm publish --tag latest
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Publish `@bcc-code/icons-vue`
-        run: npm publish ./vue --tag dev
+        run: npm publish ./vue --tag latest
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
