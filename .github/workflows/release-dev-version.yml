@@ -1,0 +1,49 @@
+name: Release Dev Version
+
+on:
+  push:
+    branches: [main]
+
+env:
+  CI: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: .node-version
+          cache: 'npm'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Resolve version
+        id: vars
+        run: echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
+
+      - name: 'Version `@bcc-code/icons` based on commit: 0.0.0-dev.${{ env.sha_short }}'
+        run: npm version 0.0.0-dev.${{ env.sha_short }} --force --no-git-tag-version
+      
+      - name: 'Version `@bcc-code/icons-vue` based on commit: 0.0.0-dev.${{ env.sha_short }}'
+        run: npm version 0.0.0-dev.${{ env.sha_short }} --force --no-git-tag-version --prefix vue
+
+      - name: Publish `@bcc-code/icons`
+        run: npm publish --tag dev
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Publish `@bcc-code/icons-vue`
+        run: npm publish ./vue --tag dev
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
