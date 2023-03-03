@@ -41,12 +41,12 @@ Icons use an upper camel case naming convention and are always suffixed with the
 
 ## Release a new version of this package
 First, create a Git tag and update the `package.json` files for both the top-level package and the Vue package. The easiest way is to use `npm version`:
-```ssh
+```sh
 npm version 0.1.0
 ```
 
 Then push this tag to GitHub:
-```ssh
+```sh
 git push --follow-tags
 ```
 
