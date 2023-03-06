@@ -8,10 +8,11 @@
     ],
     "scripts": {
         "build": "npm run build-icons && node ./scripts/build.js",
-        "build-icons": "svgo -f ./src/outlined -o ./icons --pretty --indent=2"
+        "build-icons": "svgo -f ./node_modules/@material-symbols/svg-500/outlined -o ./icons --pretty --indent=2"
     },
     "devDependencies": {
         "@babel/core": "^7.12.10",
+        "@material-symbols/svg-500": "^0.4.6",
         "@vue/compiler-dom": "^3.0.5",
         "camelcase": "^6.0.0",
         "number-to-words": "1.2.4",
