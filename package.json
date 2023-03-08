@@ -12,7 +12,6 @@
         "build-icons": "svgo -f ./node_modules/@material-symbols/svg-500/outlined -o ./icons --pretty --indent=2"
     },
     "devDependencies": {
-        "@babel/core": "^7.12.10",
         "@material-symbols/svg-500": "^0.4.6",
         "@vue/compiler-dom": "^3.0.5",
         "camelcase": "^6.0.0",
