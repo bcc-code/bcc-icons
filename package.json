@@ -7,9 +7,13 @@
     "files": [
         "icons"
     ],
+    "workspaces": [
+        "vue"
+    ],
     "scripts": {
         "build": "npm run build-icons && node ./scripts/build.js",
-        "build-icons": "svgo -f ./node_modules/@material-symbols/svg-500/outlined -o ./icons --pretty --indent=2"
+        "build-icons": "svgo -f ./node_modules/@material-symbols/svg-500/outlined -o ./icons --pretty --indent=2",
+        "version": "npm version $npm_package_version --no-git-tag-version --workspaces && git add ."
     },
     "devDependencies": {
         "@material-symbols/svg-500": "^0.4.6",
