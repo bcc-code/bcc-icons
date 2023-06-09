@@ -37,15 +37,17 @@ jobs:
         id: vars
         run: echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
 
-      - name: 'Version based on commit: 0.0.0-dev.${{ env.sha_short }}'
-        run: npm version 0.0.0-dev.${{ env.sha_short }} --force --no-git-tag-version
-
       - name: Publish `@bcc-code/icons`
-        run: npm publish --tag dev
+        run: |
+          npm version 0.0.0-dev.${{ env.sha_short }} --force --no-git-tag-version
+          npm publish --tag dev
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Publish `@bcc-code/icons-vue`
-        run: npm publish ./vue --tag dev
+        run: |
+          npm version 0.0.0-dev.${{ env.sha_short }} --force --no-git-tag-version
+          npm publish --tag dev
+        working-directory: vue
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
