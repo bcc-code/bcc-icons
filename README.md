@@ -1,3 +1,5 @@
+## **Deprecrated** This repository was moved into the monorepo [bcc-design](https://github.com/bcc-code/bcc-design)
+
 # bcc-icons
 Icons used in the BCC design system, adapted from Material Symbols.
 
